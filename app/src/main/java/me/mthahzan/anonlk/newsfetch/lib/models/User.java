@@ -24,6 +24,11 @@ public class User extends BaseModel {
     private String authName;
 
     /**
+     * User role name
+     */
+    private String role;
+
+    /**
      * {@link AppPreference} object
      */
     private AppPreference appPreference;

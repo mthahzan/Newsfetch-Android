@@ -1,4 +1,4 @@
-package me.mthahzan.anonlk.newsfetch.main;
+package me.mthahzan.anonlk.newsfetch.splash;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,16 +7,17 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import me.mthahzan.anonlk.newsfetch.R;
+import me.mthahzan.anonlk.newsfetch.consumer.main.MainActivity;
 import me.mthahzan.anonlk.newsfetch.lib.PreferenceManager;
 import me.mthahzan.anonlk.newsfetch.lib.models.AppSession;
 import me.mthahzan.anonlk.newsfetch.login.LoginActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
         // Call the navigation
         navigateUser(this);
@@ -31,13 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 .getInstance(context.getApplicationContext());
         AppSession appSession = preferenceManager.getSession();
 
-        if (appSession == null) {
-            Intent intent = new Intent(context, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            // TODO: Add implementation here
-            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent =
+                new Intent(context, appSession == null ? LoginActivity.class : MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

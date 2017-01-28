@@ -13,4 +13,14 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_main">User Area</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="commercialsTempLabel">Commercials</string>
+    <string name="postsTempLabel">Posts</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cosumerMainTabLabelPosts">Posts</string>
+    <string name="consumerMainTabLabelCommercials">Commercials</string>
 </resources>
