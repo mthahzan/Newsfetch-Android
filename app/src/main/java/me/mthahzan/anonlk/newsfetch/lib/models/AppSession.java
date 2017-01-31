@@ -19,6 +19,11 @@ public class AppSession extends BaseModel {
     private User user;
 
     /**
+     * Session expiration
+     */
+    private long expiration;
+
+    /**
      * Gets the auth token
      * @return The auth token string
      */
@@ -32,6 +37,14 @@ public class AppSession extends BaseModel {
      */
     public User getUser() {
         return user;
+    }
+
+    /**
+     * Gets the session expiration time
+     * @return Session expiration time long value
+     */
+    public long getExpiration() {
+        return expiration;
     }
 
     /**

@@ -13,12 +13,12 @@ public class FragmentHolder {
     /**
      * Fragment reference
      */
-    private Fragment fragment;
+    private final Fragment fragment;
 
     /**
      * Fragment title
      */
-    private String title;
+    private final String title;
 
     public FragmentHolder(@NonNull Fragment fragment, @NonNull String title) {
         this.fragment = fragment;

@@ -2,9 +2,8 @@ package me.mthahzan.anonlk.newsfetch.splash;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
 import me.mthahzan.anonlk.newsfetch.R;
 import me.mthahzan.anonlk.newsfetch.consumer.main.MainActivity;

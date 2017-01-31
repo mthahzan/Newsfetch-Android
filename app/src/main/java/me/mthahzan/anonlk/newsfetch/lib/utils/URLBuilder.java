@@ -1,4 +1,4 @@
-package me.mthahzan.anonlk.newsfetch.utils;
+package me.mthahzan.anonlk.newsfetch.lib.utils;
 
 import java.util.HashMap;
 
@@ -12,8 +12,16 @@ public class URLBuilder {
      * The URL for authentication
      * @return The URL for authentication
      */
-    public static String authURL() {
-        return Constants.API_BASE_URL + "/auth";
+    public static String authEndpoint() {
+        return new Constants().getConstants().getApiBaseUrl() + "/auth/";
+    }
+
+    /**
+     * The URL for token refresh endpoint
+     * @return The URL for token refresh endpoint
+     */
+    public static String refreshTokenEndpoint() {
+        return new Constants().getConstants().getApiBaseUrl() + "/auth/token";
     }
 
     /**
@@ -34,7 +42,8 @@ public class URLBuilder {
         urlSegmentMap.put(segmentName, String.valueOf(modelId));
 
         // Create the raw URL with url segments
-        String url = Constants.API_BASE_URL + "/" + pluralizedModelName + "/:" + segmentName;
+        String url = new Constants().getConstants().getApiBaseUrl() +
+                "/" + pluralizedModelName + "/:" + segmentName;
 
         return getMappedURL(url, urlSegmentMap);
     }
@@ -48,7 +57,7 @@ public class URLBuilder {
         // Add an "s" to the end to pluralize the model name for API access
         String pluralizedModelName = modelName + "s";
 
-        return Constants.API_BASE_URL + "/" + pluralizedModelName;
+        return new Constants().getConstants().getApiBaseUrl() + "/" + pluralizedModelName;
     }
 
     /**

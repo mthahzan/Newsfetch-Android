@@ -18,7 +18,7 @@ public class MainSectionsPagerAdapter extends FragmentPagerAdapter {
     /**
      * The {@link List<FragmentHolder>}
      */
-    private List<FragmentHolder> fragmentHolders;
+    private final List<FragmentHolder> fragmentHolders;
 
     public MainSectionsPagerAdapter(FragmentManager fm, List<FragmentHolder> fragmentHolders) {
         super(fm);

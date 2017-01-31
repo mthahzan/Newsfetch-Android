@@ -5,12 +5,16 @@ import android.support.annotation.NonNull;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ANRequest;
+import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
 import me.mthahzan.anonlk.newsfetch.lib.PreferenceManager;
 import me.mthahzan.anonlk.newsfetch.lib.models.AppSession;
+import me.mthahzan.anonlk.newsfetch.lib.utils.URLBuilder;
 
 /**
  * Created by mthahzan on 1/28/17.
@@ -19,16 +23,16 @@ import me.mthahzan.anonlk.newsfetch.lib.models.AppSession;
 public class NetworkManager {
 
     /**
-     * Current {@link AppSession} instance
+     * {@link PreferenceManager} instance
      */
-    private AppSession appSession;
+    private PreferenceManager preferenceManager;
 
     /**
      * Construct {@link NetworkManager} instance with session
      * @param context Appication{@link Context}
      */
     public NetworkManager(@NonNull Context context) {
-        this.appSession = PreferenceManager.getInstance(context).getSession();
+        this.preferenceManager = PreferenceManager.getInstance(context);
     }
 
     /**
@@ -37,21 +41,108 @@ public class NetworkManager {
     public NetworkManager() {}
 
     /**
-     * Update the current {@link NetworkManager} instance with session
-     * @param context Application{@link Context}
+     * Make an HTTP GET request
+     * This function will automatically refresh the auth token if necessary
+     * @param url The URL to GET from
+     * @param queryParams The query params
+     * @param listener The {@link JSONObjectRequestListener} instance
      */
-    public void updateSession(@NonNull Context context) {
-        this.appSession = PreferenceManager.getInstance(context).getSession();
+    public void makeGETRequest(final @NonNull String url,
+                               final @NonNull HashMap<String, String> queryParams,
+                               final @NonNull JSONObjectRequestListener listener) {
+        AppSession appSession = this.preferenceManager.getSession();
+
+        if (appSession != null) {
+            // There is a current session
+            if (appSession.getExpiration() > System.currentTimeMillis()) {
+                // Session has expired
+                // Request a refreshed token
+                GET(URLBuilder.refreshTokenEndpoint(), new HashMap<String, String>(),
+                        new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Set the new session
+                        AppSession appSession = AppSession.deserialize(response.toString());
+                        preferenceManager.setSession(appSession);
+
+                        // Make the actual request
+                        GET(url, queryParams, listener);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        listener.onError(anError);
+                    }
+                });
+            } else {
+                // Session still active
+                // Make the request
+                GET(url, queryParams, listener);
+            }
+        } else {
+            // There's no session
+            // Make the request
+            GET(url, queryParams, listener);
+        }
     }
 
     /**
-     * Make a HTTP GET request
+     * Make an HTTP POST request
+     * This function will automatically refresh the auth token if necessary
+     * @param url The URL to POST to
+     * @param bodyParams The body params
+     * @param listener The {@link JSONObjectRequestListener} instance
+     */
+    public void makePOSTRequest(final @NonNull String url,
+                               final @NonNull HashMap<String, String> bodyParams,
+                               final @NonNull JSONObjectRequestListener listener) {
+        AppSession appSession = this.preferenceManager.getSession();
+
+        if (appSession != null) {
+            // There is a current session
+            if (appSession.getExpiration() > System.currentTimeMillis()) {
+                // Session has expired
+                // Request a refreshed token
+                GET(URLBuilder.refreshTokenEndpoint(), new HashMap<String, String>(),
+                        new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Set the new session
+                                AppSession appSession = AppSession.deserialize(response.toString());
+                                preferenceManager.setSession(appSession);
+
+                                // Make the actual request
+                                POST(url, bodyParams, listener);
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                listener.onError(anError);
+                            }
+                        });
+            } else {
+                // Session still active
+                // Make the request
+                POST(url, bodyParams, listener);
+            }
+        } else {
+            // There's no session
+            // Make the request
+            POST(url, bodyParams, listener);
+        }
+    }
+
+    /**
+     * Make an HTTP GET request
      * @param url The URL to GET from
      * @param queryParams Data to be sent as request parameters
      * @param listener {@link JSONObjectRequestListener} instance for callbacks
      */
-    public void GET(@NonNull String url, @NonNull HashMap<String, String> queryParams,
+    private void GET(@NonNull String url, @NonNull HashMap<String, String> queryParams,
                     @NonNull  JSONObjectRequestListener listener) {
+        // Get the current session
+        AppSession appSession = this.preferenceManager.getSession();
+
         // Create request builder instance
         ANRequest.GetRequestBuilder requestBuilder = AndroidNetworking.get(url);
 
@@ -71,13 +162,16 @@ public class NetworkManager {
     }
 
     /**
-     * Make a HTTP POST request
-     * @param url The URL to GET from
+     * Make an HTTP POST request
+     * @param url The URL to POST to
      * @param bodyParams Data to be sent in the request body
      * @param listener {@link JSONObjectRequestListener} instance for callbacks
      */
-    public void POST(@NonNull String url, @NonNull HashMap<String, String> bodyParams,
+    private void POST(@NonNull String url, @NonNull HashMap<String, String> bodyParams,
                      @NonNull JSONObjectRequestListener listener) {
+        // Get the current session
+        AppSession appSession = this.preferenceManager.getSession();
+
         // Create request builder instance
         ANRequest.PostRequestBuilder requestBuilder = AndroidNetworking.post(url);
 
