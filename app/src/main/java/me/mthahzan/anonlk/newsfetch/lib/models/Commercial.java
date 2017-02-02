@@ -13,7 +13,7 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
  * Created by mthahzan on 2/2/17.
  * Model class for Post object
  */
-public class Commercial extends RealmObject implements BaseModel {
+public class Commercial extends RealmObject implements IBaseModel {
 
     /**
      * ID of the Commercial

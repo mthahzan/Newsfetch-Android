@@ -18,7 +18,7 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
  * Created by mthahzan on 1/31/17.
  * Model class for CommercialType
  */
-public class CommercialType extends RealmObject implements BaseModel, ITypeModel {
+public class CommercialType extends RealmObject implements IBaseModel, ITypeModel {
 
     /**
      * ID of the CommercialType model
@@ -35,6 +35,11 @@ public class CommercialType extends RealmObject implements BaseModel, ITypeModel
      * Flag indicating whether it's active
      */
     private boolean active;
+
+    /**
+     * Commercial type icon URL
+     */
+    private String iconURL;
 
     /**
      * The child {@link Commercial} objects
@@ -69,9 +74,13 @@ public class CommercialType extends RealmObject implements BaseModel, ITypeModel
         return name;
     }
 
+    /**
+     * Gets the Commercial type Icon URL
+     * @return Icon URL string
+     */
     @Override
     public String getIconURL() {
-        return null;
+        return iconURL;
     }
 
     /**

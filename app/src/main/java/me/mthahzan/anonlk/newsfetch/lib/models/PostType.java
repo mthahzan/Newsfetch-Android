@@ -18,7 +18,7 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
  * Created by mthahzan on 1/31/17.
  * Model class for PostType
  */
-public class PostType extends RealmObject implements BaseModel, ITypeModel {
+public class PostType extends RealmObject implements IBaseModel, ITypeModel {
 
     /**
      * ID of the PostType model
@@ -40,6 +40,11 @@ public class PostType extends RealmObject implements BaseModel, ITypeModel {
      * Flag indicating whether a notification is necessary
      */
     private boolean notification;
+
+    /**
+     * Post type icon URL
+     */
+    private String iconURL;
 
     /**
      * The child {@link Post} objects
@@ -74,9 +79,13 @@ public class PostType extends RealmObject implements BaseModel, ITypeModel {
         return name;
     }
 
+    /**
+     * Gets the Post type Icon URL
+     * @return Icon URL string
+     */
     @Override
     public String getIconURL() {
-        return null;
+        return iconURL;
     }
 
     /**

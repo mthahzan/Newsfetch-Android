@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by mthahzan on 1/28/17.
  * Model class for user
  */
-public class User extends RealmObject implements BaseModel {
+public class User extends RealmObject implements IBaseModel {
 
     /**
      * User ID

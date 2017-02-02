@@ -8,7 +8,7 @@ import io.realm.RealmObject;
  * Created by mthahzan on 1/28/17.
  * Model class for AppPreferences
  */
-public class AppPreference extends RealmObject implements BaseModel {
+public class AppPreference extends RealmObject implements IBaseModel {
 
     /**
      * The refresh time
