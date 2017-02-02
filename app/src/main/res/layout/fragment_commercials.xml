@@ -20,6 +20,7 @@
             android:verticalSpacing="10dp"
             android:gravity="center"
             android:stretchMode="columnWidth"
+            android:paddingTop="10dp"
             android:paddingBottom="100dp"
             android:clipToPadding="false"/>
 

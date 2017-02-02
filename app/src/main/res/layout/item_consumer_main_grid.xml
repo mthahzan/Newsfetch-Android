@@ -7,7 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:contentDescription="@string/consumer_grid_item_type_logo"/>
+        android:contentDescription="@string/consumer_grid_item_type_logo"
+        android:layout_above="@+id/textView"
+        android:padding="5dp"/>
 
     <TextView
         style="@style/AppTheme.PrimaryText"

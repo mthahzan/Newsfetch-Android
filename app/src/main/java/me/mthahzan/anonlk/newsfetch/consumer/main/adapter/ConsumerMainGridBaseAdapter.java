@@ -98,7 +98,8 @@ public class ConsumerMainGridBaseAdapter extends BaseAdapter {
             viewHolder.title = (TextView) convertView.findViewById(R.id.textView);
             viewHolder.bitmap = (ANImageView) convertView.findViewById(R.id.imageview);
 
-            // TODO : Add default bitmap and error drawable
+            viewHolder.bitmap.setErrorImageResId(R.drawable.no_image_available);
+            viewHolder.bitmap.setDefaultImageResId(R.drawable.no_image_available);
 
             // Attach it to the view element
             convertView.setTag(viewHolder);
