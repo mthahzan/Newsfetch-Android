@@ -4,12 +4,17 @@ package me.mthahzan.anonlk.newsfetch.lib.utils;
  * Created by mthahzan on 1/31/17.
  * Holds the set of constants
  */
-class ConstantHolder {
+public class ConstantHolder {
 
     /**
      * The Base URL for the Web API
      */
     private final String apiBaseUrl;
+
+    /**
+     * The date format of the API responses
+     */
+    private final String apiDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
     ConstantHolder(String apiBaseUrl) {
         this.apiBaseUrl = apiBaseUrl;
@@ -21,5 +26,13 @@ class ConstantHolder {
      */
     String getApiBaseUrl() {
         return apiBaseUrl;
+    }
+
+    /**
+     * Gets the API response date format
+     * @return API response date format
+     */
+    public String getApiDateFormat() {
+        return apiDateFormat;
     }
 }

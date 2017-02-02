@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.androidnetworking.AndroidNetworking;
 
+import io.realm.Realm;
 import me.mthahzan.anonlk.newsfetch.lib.network.NetworkLogInterceptor;
 import okhttp3.OkHttpClient;
 

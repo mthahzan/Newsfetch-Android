@@ -2,15 +2,19 @@ package me.mthahzan.anonlk.newsfetch.lib.models;
 
 import com.google.gson.Gson;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by mthahzan on 1/28/17.
  * Model class for user
  */
-public class User extends BaseModel {
+public class User extends RealmObject implements BaseModel {
 
     /**
      * User ID
      */
+    @PrimaryKey
     private int id;
 
     /**

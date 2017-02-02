@@ -2,11 +2,13 @@ package me.mthahzan.anonlk.newsfetch.lib.models;
 
 import com.google.gson.Gson;
 
+import io.realm.RealmObject;
+
 /**
  * Created by mthahzan on 1/28/17.
  * Model class for AppPreferences
  */
-public class AppPreference extends BaseModel {
+public class AppPreference extends RealmObject implements BaseModel {
 
     /**
      * The refresh time

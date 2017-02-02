@@ -6,7 +6,7 @@ import com.google.gson.Gson;
  * Created by mthahzan on 1/28/17.
  * Model class for AppSession
  */
-public class AppSession extends BaseModel {
+public class AppSession implements BaseModel {
 
     /**
      * Auth token

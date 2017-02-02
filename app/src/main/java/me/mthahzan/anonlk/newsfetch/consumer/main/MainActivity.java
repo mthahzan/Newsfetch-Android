@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,13 +14,14 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.mthahzan.anonlk.newsfetch.BaseActivity;
 import me.mthahzan.anonlk.newsfetch.R;
 import me.mthahzan.anonlk.newsfetch.consumer.main.adapter.MainSectionsPagerAdapter;
 import me.mthahzan.anonlk.newsfetch.consumer.main.fragments.CommercialsFragment;
 import me.mthahzan.anonlk.newsfetch.consumer.main.fragments.PostsFragment;
 import me.mthahzan.anonlk.newsfetch.lib.models.FragmentHolder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
