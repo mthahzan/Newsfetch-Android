@@ -10,6 +10,8 @@ import me.mthahzan.anonlk.newsfetch.BuildConfig;
  */
 public class Constants {
 
+    // TODO : Find a better way to set/get the constants based on app flavor
+
     /**
      * The flavor map
      */
@@ -18,7 +20,7 @@ public class Constants {
     public Constants() {
         this.flavorMap = new HashMap<>();
 
-        this.flavorMap.put("dev", new ConstantHolder("http://10.0.2.2:3000"));
+        this.flavorMap.put("dev", new ConstantHolder("http://192.168.1.9:3000"));
         this.flavorMap.put("staging", new ConstantHolder("http://10.0.2.2:3000"));
         this.flavorMap.put("production", new ConstantHolder("http://10.0.2.2:3000"));
     }

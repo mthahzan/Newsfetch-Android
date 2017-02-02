@@ -16,4 +16,6 @@
 
     <string name="cosumerMainTabLabelPosts">Posts</string>
     <string name="consumerMainTabLabelCommercials">Commercials</string>
+    <string name="consumer_main_grid_item_description">The title of the grid item</string>
+    <string name="consumer_grid_item_type_logo">Main grid item type logo</string>
 </resources>

@@ -1,5 +1,8 @@
 package me.mthahzan.anonlk.newsfetch;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -18,5 +21,16 @@ public class BaseActivity extends AppCompatActivity {
 
         // Init Realm instance
         Realm.init(this.getApplicationContext());
+    }
+
+    /**
+     * Checks if a network connection is available
+     * @return TRUE if network connection is available
+     */
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

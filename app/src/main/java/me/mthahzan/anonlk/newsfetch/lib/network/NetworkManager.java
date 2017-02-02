@@ -2,6 +2,7 @@ package me.mthahzan.anonlk.newsfetch.lib.network;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ANRequest;
@@ -48,7 +49,7 @@ public class NetworkManager {
      * @param listener The {@link JSONObjectRequestListener} instance
      */
     public void makeGETRequest(final @NonNull String url,
-                               final @NonNull HashMap<String, String> queryParams,
+                               final @Nullable HashMap<String, String> queryParams,
                                final @NonNull JSONObjectRequestListener listener) {
         AppSession appSession = this.preferenceManager.getSession();
 
@@ -94,7 +95,7 @@ public class NetworkManager {
      * @param listener The {@link JSONObjectRequestListener} instance
      */
     public void makePOSTRequest(final @NonNull String url,
-                               final @NonNull HashMap<String, String> bodyParams,
+                               final @Nullable HashMap<String, String> bodyParams,
                                final @NonNull JSONObjectRequestListener listener) {
         AppSession appSession = this.preferenceManager.getSession();
 
@@ -138,7 +139,7 @@ public class NetworkManager {
      * @param queryParams Data to be sent as request parameters
      * @param listener {@link JSONObjectRequestListener} instance for callbacks
      */
-    private void GET(@NonNull String url, @NonNull HashMap<String, String> queryParams,
+    private void GET(@NonNull String url, @Nullable HashMap<String, String> queryParams,
                     @NonNull  JSONObjectRequestListener listener) {
         // Get the current session
         AppSession appSession = this.preferenceManager.getSession();
@@ -167,7 +168,7 @@ public class NetworkManager {
      * @param bodyParams Data to be sent in the request body
      * @param listener {@link JSONObjectRequestListener} instance for callbacks
      */
-    private void POST(@NonNull String url, @NonNull HashMap<String, String> bodyParams,
+    private void POST(@NonNull String url, @Nullable HashMap<String, String> bodyParams,
                      @NonNull JSONObjectRequestListener listener) {
         // Get the current session
         AppSession appSession = this.preferenceManager.getSession();
