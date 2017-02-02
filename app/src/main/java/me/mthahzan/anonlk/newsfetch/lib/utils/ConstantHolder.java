@@ -11,11 +11,6 @@ public class ConstantHolder {
      */
     private final String apiBaseUrl;
 
-    /**
-     * The date format of the API responses
-     */
-    private final String apiDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-
     ConstantHolder(String apiBaseUrl) {
         this.apiBaseUrl = apiBaseUrl;
     }
@@ -33,6 +28,6 @@ public class ConstantHolder {
      * @return API response date format
      */
     public String getApiDateFormat() {
-        return apiDateFormat;
+        return "yyyy-MM-dd HH:mm:ss.SSSZ";
     }
 }

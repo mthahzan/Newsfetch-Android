@@ -67,7 +67,7 @@ public class PostsFragment extends Fragment {
                     .getUpdatedAt();
 
             HashMap<String, String> queryParams = new HashMap<>();
-            queryParams.put("updatedAt", String.valueOf(latestUpdated.getTime()));
+            queryParams.put("lastUpdate", String.valueOf(latestUpdated.getTime()));
 
             // Fetch with query params
             fetchPostTypes(queryParams);
