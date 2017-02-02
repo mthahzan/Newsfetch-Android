@@ -39,7 +39,7 @@ public class CommercialType extends RealmObject implements IBaseModel, ITypeMode
     /**
      * Commercial type icon URL
      */
-    private String iconURL;
+    private String imageURL;
 
     /**
      * The child {@link Commercial} objects
@@ -79,8 +79,8 @@ public class CommercialType extends RealmObject implements IBaseModel, ITypeMode
      * @return Icon URL string
      */
     @Override
-    public String getIconURL() {
-        return iconURL;
+    public String getImageURL() {
+        return imageURL;
     }
 
     /**

@@ -27,6 +27,15 @@
             android:name=".consumer.main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".consumer.posts.PostsListActivity"
+            android:label="@string/title_activity_posts_list"
+            android:parentActivityName=".consumer.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mthahzan.anonlk.newsfetch.consumer.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -22,5 +22,5 @@ public interface ITypeModel {
      * Gets the bitmap Icon URL
      * @return Bitmap Icon URL string
      */
-    String getIconURL();
+    String getImageURL();
 }

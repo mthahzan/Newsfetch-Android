@@ -44,7 +44,7 @@ public class PostType extends RealmObject implements IBaseModel, ITypeModel {
     /**
      * Post type icon URL
      */
-    private String iconURL;
+    private String imageURL;
 
     /**
      * The child {@link Post} objects
@@ -84,8 +84,8 @@ public class PostType extends RealmObject implements IBaseModel, ITypeModel {
      * @return Icon URL string
      */
     @Override
-    public String getIconURL() {
-        return iconURL;
+    public String getImageURL() {
+        return imageURL;
     }
 
     /**
