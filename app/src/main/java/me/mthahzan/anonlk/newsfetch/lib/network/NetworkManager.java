@@ -54,7 +54,7 @@ public class NetworkManager {
 
         if (appSession != null) {
             // There is a current session
-            if (appSession.getExpiration() > System.currentTimeMillis()) {
+            if (System.currentTimeMillis() > appSession.getExpiration()) {
                 // Session has expired
                 // Request a refreshed token
                 GET(URLBuilder.refreshTokenEndpoint(), new HashMap<String, String>(),
@@ -100,7 +100,7 @@ public class NetworkManager {
 
         if (appSession != null) {
             // There is a current session
-            if (appSession.getExpiration() > System.currentTimeMillis()) {
+            if (System.currentTimeMillis() > appSession.getExpiration()) {
                 // Session has expired
                 // Request a refreshed token
                 GET(URLBuilder.refreshTokenEndpoint(), new HashMap<String, String>(),
