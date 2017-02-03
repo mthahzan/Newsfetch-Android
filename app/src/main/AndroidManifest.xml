@@ -54,6 +54,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mthahzan.anonlk.newsfetch.consumer.posts.PostsListActivity" />
         </activity>
+        <activity
+            android:name=".consumer.commercial.CommercialViewActivity"
+            android:label="@string/title_activity_commercial_view"
+            android:parentActivityName=".consumer.commercials.CommercialListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mthahzan.anonlk.newsfetch.consumer.commercials.CommercialListActivity" />
+        </activity>
     </application>
 
 </manifest>

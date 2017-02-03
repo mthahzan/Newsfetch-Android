@@ -1,24 +1,23 @@
-package me.mthahzan.anonlk.newsfetch.consumer.post;
+package me.mthahzan.anonlk.newsfetch.consumer.commercial;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import io.realm.Realm;
-import me.mthahzan.anonlk.newsfetch.BaseActivity;
 import me.mthahzan.anonlk.newsfetch.R;
-import me.mthahzan.anonlk.newsfetch.lib.models.Post;
+import me.mthahzan.anonlk.newsfetch.lib.models.Commercial;
 
-public class PostViewActivity extends BaseActivity {
+public class CommercialViewActivity extends AppCompatActivity {
 
     /**
-     * Post ID
+     * Commercial ID
      */
-    private int postId;
+    private int commercialId;
 
     /**
      * {@link Realm} instance
@@ -30,11 +29,11 @@ public class PostViewActivity extends BaseActivity {
     private TextView content;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_view);
+        setContentView(R.layout.activity_commercial_view);
 
-        postId = getIntent().getIntExtra(Post.INTENT_TAG, -1);
+        commercialId = getIntent().getIntExtra(Commercial.INTENT_TAG, -1);
 
         initializeViewElements();
 
@@ -74,13 +73,13 @@ public class PostViewActivity extends BaseActivity {
     }
 
     /**
-     * Queries the {@link Post} object from local DB
-     * @return The {@link Post} of ID
+     * Queries the {@link Commercial} object from local DB
+     * @return The {@link Commercial} of ID
      */
-    private Post queryPost() {
+    private Commercial queryCommercial() {
         return realm
-                .where(Post.class)
-                .equalTo("id", postId)
+                .where(Commercial.class)
+                .equalTo("id", commercialId)
                 .findFirst();
     }
 
@@ -88,11 +87,11 @@ public class PostViewActivity extends BaseActivity {
      * Binds data to UI elements
      */
     private void bindData() {
-        Post post = queryPost();
+        Commercial commercial = queryCommercial();
 
-        if (post != null) {
-            title.setText(post.getTitle());
-            content.setText(post.getContent());
+        if (commercial != null) {
+            title.setText(commercial.getTitle());
+            content.setText(commercial.getContent());
         }
     }
 

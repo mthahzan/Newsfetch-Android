@@ -1,5 +1,6 @@
 package me.mthahzan.anonlk.newsfetch.consumer.commercials;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import me.mthahzan.anonlk.newsfetch.BaseActivity;
 import me.mthahzan.anonlk.newsfetch.R;
+import me.mthahzan.anonlk.newsfetch.consumer.commercial.CommercialViewActivity;
 import me.mthahzan.anonlk.newsfetch.consumer.posts.PostsListActivity;
 import me.mthahzan.anonlk.newsfetch.consumer.shared.adapter.ConsumerItemAdapter;
 import me.mthahzan.anonlk.newsfetch.consumer.shared.adapter.OnConsumerItemClickListener;
@@ -237,9 +239,8 @@ public class CommercialListActivity extends BaseActivity {
                         public void onItemClick(IItemModel item) {
                             Commercial commercial = (Commercial) item;
 
-                            Toast.makeText(CommercialListActivity.this,
-                                    "Clicked Commercial: " + commercial.getTitle(),
-                                    Toast.LENGTH_SHORT).show();
+                            // Navigate to single commercial page
+                            navigateToSinglePostTypeView(commercial);
                         }
                     });
 
@@ -258,9 +259,9 @@ public class CommercialListActivity extends BaseActivity {
      * @param commercial The clicked {@link Commercial}
      */
     private void navigateToSinglePostTypeView(Commercial commercial) {
-//        Intent intent = new Intent(PostsListActivity.this, PostsListActivity.class);
-//        intent.putExtra(PostType.INTENT_TAG, postType.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(CommercialListActivity.this, CommercialViewActivity.class);
+        intent.putExtra(Commercial.INTENT_TAG, commercial.getId());
+        startActivity(intent);
     }
 
     /**
