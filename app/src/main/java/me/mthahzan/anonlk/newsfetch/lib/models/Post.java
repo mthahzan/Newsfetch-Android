@@ -20,6 +20,11 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
 public class Post extends RealmObject implements IBaseModel, IItemModel {
 
     /**
+     * Tha tag to use when putting this as extra when passing through an intent
+     */
+    public static final String INTENT_TAG = "post_id";
+
+    /**
      * ID of the Post
      */
     @PrimaryKey

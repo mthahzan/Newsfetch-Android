@@ -1,5 +1,6 @@
 package me.mthahzan.anonlk.newsfetch.consumer.posts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
@@ -25,6 +27,7 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import me.mthahzan.anonlk.newsfetch.BaseActivity;
 import me.mthahzan.anonlk.newsfetch.R;
+import me.mthahzan.anonlk.newsfetch.consumer.post.PostViewActivity;
 import me.mthahzan.anonlk.newsfetch.consumer.shared.adapter.ConsumerItemAdapter;
 import me.mthahzan.anonlk.newsfetch.consumer.shared.adapter.OnConsumerItemClickListener;
 import me.mthahzan.anonlk.newsfetch.lib.models.IItemModel;
@@ -108,6 +111,13 @@ public class PostsListActivity extends BaseActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
         }
     }
 
@@ -226,8 +236,8 @@ public class PostsListActivity extends BaseActivity {
                 public void onItemClick(IItemModel item) {
                     Post post = (Post) item;
 
-                    Toast.makeText(PostsListActivity.this,
-                            "Clicked Post: " + post.getTitle(), Toast.LENGTH_SHORT).show();
+                    // Navigate to single post page
+                    navigateToSinglePostTypeView(post);
                 }
             });
 
@@ -246,9 +256,16 @@ public class PostsListActivity extends BaseActivity {
      * @param post The clicked {@link Post}
      */
     private void navigateToSinglePostTypeView(Post post) {
-//        Intent intent = new Intent(PostsListActivity.this, PostsListActivity.class);
-//        intent.putExtra(PostType.INTENT_TAG, postType.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(PostsListActivity.this, PostViewActivity.class);
+        intent.putExtra(Post.INTENT_TAG, post.getId());
+        startActivity(intent);
     }
 
+    /**
+     * Overriding the default back press action
+     */
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

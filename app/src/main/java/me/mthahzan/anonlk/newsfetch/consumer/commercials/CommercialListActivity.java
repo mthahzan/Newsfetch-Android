@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
@@ -109,6 +110,13 @@ public class CommercialListActivity extends BaseActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
         }
     }
 
@@ -255,4 +263,11 @@ public class CommercialListActivity extends BaseActivity {
 //        startActivity(intent);
     }
 
+    /**
+     * Overriding the default back press action
+     */
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

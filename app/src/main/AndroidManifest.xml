@@ -45,6 +45,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mthahzan.anonlk.newsfetch.consumer.main.MainActivity" />
         </activity>
+        <activity
+            android:name=".consumer.post.PostViewActivity"
+            android:label="@string/title_activity_post_view"
+            android:parentActivityName=".consumer.posts.PostsListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mthahzan.anonlk.newsfetch.consumer.posts.PostsListActivity" />
+        </activity>
     </application>
 
 </manifest>

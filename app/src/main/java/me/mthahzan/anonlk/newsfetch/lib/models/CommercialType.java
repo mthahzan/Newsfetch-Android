@@ -134,7 +134,7 @@ public class CommercialType extends RealmObject implements IBaseModel, ITypeMode
     /**
      * Deserializes a collection of model instances
      * @param jsonString The model JSON Array
-     * @return Deserialized {@link List< CommercialType >}
+     * @return Deserialized {@link List<CommercialType>}
      */
     public static List<CommercialType> deserializeCollection(String jsonString) {
         String dateFormat = new Constants().getConstants().getApiDateFormat();
