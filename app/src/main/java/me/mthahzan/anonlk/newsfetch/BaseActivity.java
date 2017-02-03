@@ -27,7 +27,7 @@ public class BaseActivity extends AppCompatActivity {
      * Checks if a network connection is available
      * @return TRUE if network connection is available
      */
-    private boolean isNetworkAvailable() {
+    public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

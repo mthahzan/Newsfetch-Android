@@ -2,6 +2,7 @@ package me.mthahzan.anonlk.newsfetch.lib.models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -19,6 +20,11 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
  * Model class for PostType
  */
 public class PostType extends RealmObject implements IBaseModel, ITypeModel {
+
+    /**
+     * Tha tag to use when putting this as extra when passing through an intent
+     */
+    public static final String INTENT_TAG = "post_type_id";
 
     /**
      * ID of the PostType model
@@ -49,6 +55,7 @@ public class PostType extends RealmObject implements IBaseModel, ITypeModel {
     /**
      * The child {@link Post} objects
      */
+    @SerializedName("Posts")
     private RealmList<Post> posts;
 
     /**

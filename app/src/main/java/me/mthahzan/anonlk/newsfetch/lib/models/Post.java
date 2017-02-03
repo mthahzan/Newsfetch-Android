@@ -2,8 +2,12 @@ package me.mthahzan.anonlk.newsfetch.lib.models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -118,6 +122,20 @@ public class Post extends RealmObject implements IBaseModel {
      */
     public Date getUpdatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * Deserializes a collection of model instances
+     * @param jsonString The model JSON Array
+     * @return Deserialized {@link List <PostType>}
+     */
+    public static List<Post> deserializeCollection(String jsonString) {
+        String dateFormat = new Constants().getConstants().getApiDateFormat();
+        Gson gson = new GsonBuilder().setDateFormat(dateFormat).create();
+
+        Type listType = new TypeToken<ArrayList<Post>>(){}.getType();
+
+        return gson.fromJson(jsonString, listType);
     }
 
     @Override
