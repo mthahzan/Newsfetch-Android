@@ -36,6 +36,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mthahzan.anonlk.newsfetch.consumer.main.MainActivity" />
         </activity>
+        <activity
+            android:name=".consumer.commercials.CommercialListActivity"
+            android:label="@string/title_activity_commercial_list"
+            android:parentActivityName=".consumer.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mthahzan.anonlk.newsfetch.consumer.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
