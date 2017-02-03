@@ -139,8 +139,6 @@ public class LoginActivity extends BaseActivity {
                     preferenceManager.setSession(appSession);
                     showProgress(false);
 
-                    Log.d("LoginActivity", "Going to start the intent");
-
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

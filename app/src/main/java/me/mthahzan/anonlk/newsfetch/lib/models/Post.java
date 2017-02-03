@@ -27,42 +27,50 @@ public class Post extends RealmObject implements IBaseModel, IItemModel {
     /**
      * ID of the Post
      */
+    @SuppressWarnings("unused")
     @PrimaryKey
     private int id;
 
     /**
      * Title of the post
      */
+    @SuppressWarnings("unused")
     private String title;
 
     /**
      * The image URL string
      */
+    @SuppressWarnings("unused")
     private String imageURL;
 
     /**
      * The post content
      */
+    @SuppressWarnings("unused")
     private String content;
 
     /**
      * Boolean indicating whether the post is active
      */
+    @SuppressWarnings("unused")
     private boolean active;
 
     /**
      * The relationship link to {@link PostType}
      */
+    @SuppressWarnings("unused")
     private PostType postType;
 
     /**
      * Record creation {@link Date}
      */
+    @SuppressWarnings("unused")
     private Date createdAt;
 
     /**
      * Record last updated {@link Date}
      */
+    @SuppressWarnings("unused")
     private Date updatedAt;
 
     /**

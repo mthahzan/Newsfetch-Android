@@ -112,4 +112,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_commercial_view">CommercialViewActivity</string>
+    <string name="phone_number">Phone number</string>
 </resources>

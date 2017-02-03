@@ -37,11 +37,6 @@ public class NetworkManager {
     }
 
     /**
-     * Construct {@link NetworkManager} instance without session
-     */
-    public NetworkManager() {}
-
-    /**
      * Make an HTTP GET request
      * This function will automatically refresh the auth token if necessary
      * @param url The URL to GET from

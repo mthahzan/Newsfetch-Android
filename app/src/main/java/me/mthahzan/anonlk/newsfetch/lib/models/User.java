@@ -14,27 +14,32 @@ public class User extends RealmObject implements IBaseModel {
     /**
      * User ID
      */
+    @SuppressWarnings("unused")
     @PrimaryKey
     private int id;
 
     /**
      * User name
      */
+    @SuppressWarnings("unused")
     private String name;
 
     /**
      * User authName
      */
+    @SuppressWarnings("unused")
     private String authName;
 
     /**
      * User role name
      */
+    @SuppressWarnings("unused")
     private String role;
 
     /**
      * {@link AppPreference} object
      */
+    @SuppressWarnings("unused")
     private AppPreference appPreference;
 
     /**

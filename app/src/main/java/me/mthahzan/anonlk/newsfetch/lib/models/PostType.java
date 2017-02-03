@@ -29,43 +29,51 @@ public class PostType extends RealmObject implements IBaseModel, ITypeModel {
     /**
      * ID of the PostType model
      */
+    @SuppressWarnings("unused")
     @PrimaryKey
     private int id;
 
     /**
      * Name of the post type
      */
+    @SuppressWarnings("unused")
     private String name;
 
     /**
      * Flag indicating whether it's active
      */
+    @SuppressWarnings("unused")
     private boolean active;
 
     /**
      * Flag indicating whether a notification is necessary
      */
+    @SuppressWarnings("unused")
     private boolean notification;
 
     /**
      * Post type icon URL
      */
+    @SuppressWarnings("unused")
     private String imageURL;
 
     /**
      * The child {@link Post} objects
      */
+    @SuppressWarnings("unused")
     @SerializedName("Posts")
     private RealmList<Post> posts;
 
     /**
      * Record creation {@link Date}
      */
+    @SuppressWarnings("unused")
     private Date createdAt;
 
     /**
      * Record last updated {@link Date}
      */
+    @SuppressWarnings("unused")
     private Date updatedAt;
 
     /**
