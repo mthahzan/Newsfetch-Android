@@ -1,29 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="me.mthahzan.anonlk.newsfetch.consumer.main.fragments.PostsFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swiperefresh"
+    <GridView
+        android:id="@+id/gridview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="150dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:paddingTop="10dp"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"/>
 
-        <GridView
-            android:id="@+id/gridview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="auto_fit"
-            android:columnWidth="150dp"
-            android:horizontalSpacing="10dp"
-            android:verticalSpacing="10dp"
-            android:gravity="center"
-            android:stretchMode="columnWidth"
-            android:paddingTop="10dp"
-            android:paddingBottom="100dp"
-            android:clipToPadding="false"/>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
