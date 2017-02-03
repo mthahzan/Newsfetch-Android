@@ -3,23 +3,31 @@ package me.mthahzan.anonlk.newsfetch.consumer.posts;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import me.mthahzan.anonlk.newsfetch.BaseActivity;
 import me.mthahzan.anonlk.newsfetch.R;
+import me.mthahzan.anonlk.newsfetch.consumer.shared.adapter.ConsumerItemAdapter;
+import me.mthahzan.anonlk.newsfetch.consumer.shared.adapter.OnConsumerItemClickListener;
+import me.mthahzan.anonlk.newsfetch.lib.models.IItemModel;
+import me.mthahzan.anonlk.newsfetch.lib.models.Post;
 import me.mthahzan.anonlk.newsfetch.lib.models.PostType;
 import me.mthahzan.anonlk.newsfetch.lib.network.NetworkManager;
 import me.mthahzan.anonlk.newsfetch.lib.utils.URLBuilder;
@@ -48,6 +56,16 @@ public class PostsListActivity extends BaseActivity {
      */
     private int postTypeId = -1;
 
+    /**
+     * The {@link RecyclerView} instance
+     */
+    private RecyclerView recyclerView;
+
+    /**
+     * {@link ConsumerItemAdapter} instance
+     */
+    private ConsumerItemAdapter consumerItemAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +79,28 @@ public class PostsListActivity extends BaseActivity {
         initializeViewElements();
 
         processPostTypeBinding();
+    }
+
+    /**
+     * Instantiates the UI element references
+     */
+    private void initializeViewElements() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchPostType(null);
+            }
+        });
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     /**
@@ -85,26 +125,6 @@ public class PostsListActivity extends BaseActivity {
         if (postType == null && !this.isNetworkAvailable()) {
             Snackbar.make(swipeRefreshLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-        }
-    }
-
-    /**
-     * Instantiates the UI element references
-     */
-    private void initializeViewElements() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                fetchPostType(null);
-            }
-        });
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -178,34 +198,41 @@ public class PostsListActivity extends BaseActivity {
     private void bindData() {
         PostType postType = queryPostType(postTypeId);
 
-//        List<ITypeModel> typeModels = new ArrayList<>();
-//        for (PostType postType : postTypes) {
-//            typeModels.add(postType);
-//        }
-//
-//        if (consumerMainGridBaseAdapter == null) {
-//            consumerMainGridBaseAdapter = new ConsumerMainGridBaseAdapter(getActivity(), typeModels);
-//            gridView.setAdapter(consumerMainGridBaseAdapter);
-//
-//            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    PostType clickedPostType = (PostType) consumerMainGridBaseAdapter
-//                            .getItem(position);
-//
-//                    navigateToSinglePostTypeView(clickedPostType);
-//                }
-//            });
-//        } else {
-//            consumerMainGridBaseAdapter.setTypeModels(typeModels);
-//        }
+        List<IItemModel> itemModels = new ArrayList<>();
+
+        if (postType != null && postType.getPosts() != null) {
+            RealmList<Post> posts = postType.getPosts();
+
+            itemModels.addAll(posts);
+        }
+
+        if (consumerItemAdapter == null) {
+            consumerItemAdapter = new ConsumerItemAdapter(itemModels,
+                    new OnConsumerItemClickListener() {
+                @Override
+                public void onItemClick(IItemModel item) {
+                    Post post = (Post) item;
+
+                    Toast.makeText(PostsListActivity.this,
+                            "Clicked Post: " + post.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            recyclerView.setAdapter(consumerItemAdapter);
+
+            RecyclerView.LayoutManager mLayoutManager =
+                    new LinearLayoutManager(getApplicationContext());
+            recyclerView.setLayoutManager(mLayoutManager);
+        } else {
+            consumerItemAdapter.setItems(itemModels);
+        }
     }
 
     /**
      * Navigate to single post type activity
-     * @param postType The clicked {@link PostType}
+     * @param post The clicked {@link Post}
      */
-    private void navigateToSinglePostTypeView(PostType postType) {
+    private void navigateToSinglePostTypeView(Post post) {
 //        Intent intent = new Intent(PostsListActivity.this, PostsListActivity.class);
 //        intent.putExtra(PostType.INTENT_TAG, postType.getId());
 //        startActivity(intent);

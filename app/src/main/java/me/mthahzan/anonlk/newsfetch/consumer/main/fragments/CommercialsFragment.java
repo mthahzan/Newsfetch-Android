@@ -203,9 +203,7 @@ public class CommercialsFragment extends Fragment {
                 .sort("updatedAt");
 
         List<ITypeModel> typeModels = new ArrayList<>();
-        for (CommercialType commercialType: commercialTypes) {
-            typeModels.add(commercialType);
-        }
+        typeModels.addAll(commercialTypes);
 
         if (consumerMainGridBaseAdapter == null) {
             consumerMainGridBaseAdapter = new ConsumerMainGridBaseAdapter(getActivity(), typeModels);

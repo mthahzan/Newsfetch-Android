@@ -205,9 +205,7 @@ public class PostsFragment extends Fragment {
         RealmResults<PostType> postTypes =  queryPostTypes();
 
         List<ITypeModel> typeModels = new ArrayList<>();
-        for (PostType postType : postTypes) {
-            typeModels.add(postType);
-        }
+        typeModels.addAll(postTypes);
 
         if (consumerMainGridBaseAdapter == null) {
             consumerMainGridBaseAdapter = new ConsumerMainGridBaseAdapter(getActivity(), typeModels);

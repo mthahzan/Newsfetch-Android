@@ -13,7 +13,7 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
  * Created by mthahzan on 2/2/17.
  * Model class for Post object
  */
-public class Commercial extends RealmObject implements IBaseModel {
+public class Commercial extends RealmObject implements IBaseModel, IItemModel {
 
     /**
      * ID of the Commercial
@@ -65,6 +65,15 @@ public class Commercial extends RealmObject implements IBaseModel {
     }
 
     /**
+     * Gets the name (title) to display
+     * @return The title string
+     */
+    @Override
+    public String getName() {
+        return title;
+    }
+
+    /**
      * Gets the title
      * @return Title string
      */
@@ -84,6 +93,7 @@ public class Commercial extends RealmObject implements IBaseModel {
      * Gets the content of the commercial
      * @return Commercial content string
      */
+    @Override
     public String getContent() {
         return content;
     }

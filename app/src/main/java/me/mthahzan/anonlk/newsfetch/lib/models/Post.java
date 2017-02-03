@@ -17,7 +17,7 @@ import me.mthahzan.anonlk.newsfetch.lib.utils.Constants;
  * Created by mthahzan on 2/2/17.
  * Model class for Post object
  */
-public class Post extends RealmObject implements IBaseModel {
+public class Post extends RealmObject implements IBaseModel, IItemModel {
 
     /**
      * ID of the Post
@@ -69,6 +69,15 @@ public class Post extends RealmObject implements IBaseModel {
     }
 
     /**
+     * Gets the name (title)
+     * @return The title to display
+     */
+    @Override
+    public String getName() {
+        return title;
+    }
+
+    /**
      * Gets the title
      * @return Title string
      */
@@ -88,6 +97,7 @@ public class Post extends RealmObject implements IBaseModel {
      * Gets the content of the post
      * @return Post content string
      */
+    @Override
     public String getContent() {
         return content;
     }
