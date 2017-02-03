@@ -137,8 +137,7 @@ public class CommercialType extends RealmObject implements IBaseModel, ITypeMode
      * @return Deserialized {@link List<CommercialType>}
      */
     public static List<CommercialType> deserializeCollection(String jsonString) {
-        String dateFormat = new Constants().getConstants().getApiDateFormat();
-        Gson gson = new GsonBuilder().setDateFormat(dateFormat).create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_FORMAT).create();
 
         Type listType = new TypeToken<ArrayList<CommercialType>>(){}.getType();
 

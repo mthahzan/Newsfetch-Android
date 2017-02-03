@@ -21,14 +21,17 @@ android {
     productFlavors {
         production {
             applicationId "me.mthahzan.anonlk.newsfetch"
+            buildConfigField "String", "API_BASE", "\"http://54.202.122.38/newsfetch/api\""
         }
 
         staging {
             applicationId "me.mthahzan.anonlk.newsfetch.staging"
+            buildConfigField "String", "API_BASE", "\"http://54.202.122.38/newsfetch/api\""
         }
 
         dev {
             applicationId "me.mthahzan.anonlk.newsfetch.dev"
+            buildConfigField "String", "API_BASE", "\"http://10.0.2.2:3000\""
         }
     }
 }

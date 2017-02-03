@@ -137,8 +137,7 @@ public class Commercial extends RealmObject implements IBaseModel, IItemModel {
 
     @Override
     public String serialize() {
-        String dateFormat = new Constants().getConstants().getApiDateFormat();
-        Gson gson = new GsonBuilder().setDateFormat(dateFormat).create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_FORMAT).create();
 
         return gson.toJson(this);
     }

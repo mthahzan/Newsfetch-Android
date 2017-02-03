@@ -153,8 +153,7 @@ public class Post extends RealmObject implements IBaseModel, IItemModel {
      * @return Deserialized {@link List <PostType>}
      */
     public static List<Post> deserializeCollection(String jsonString) {
-        String dateFormat = new Constants().getConstants().getApiDateFormat();
-        Gson gson = new GsonBuilder().setDateFormat(dateFormat).create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_FORMAT).create();
 
         Type listType = new TypeToken<ArrayList<Post>>(){}.getType();
 
@@ -163,8 +162,7 @@ public class Post extends RealmObject implements IBaseModel, IItemModel {
 
     @Override
     public String serialize() {
-        String dateFormat = new Constants().getConstants().getApiDateFormat();
-        Gson gson = new GsonBuilder().setDateFormat(dateFormat).create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_FORMAT).create();
 
         return gson.toJson(this);
     }

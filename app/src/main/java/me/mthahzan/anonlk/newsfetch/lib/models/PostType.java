@@ -158,8 +158,7 @@ public class PostType extends RealmObject implements IBaseModel, ITypeModel {
      * @return Deserialized {@link List<PostType>}
      */
     public static List<PostType> deserializeCollection(String jsonString) {
-        String dateFormat = new Constants().getConstants().getApiDateFormat();
-        Gson gson = new GsonBuilder().setDateFormat(dateFormat).create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_FORMAT).create();
 
         Type listType = new TypeToken<ArrayList<PostType>>(){}.getType();
 
