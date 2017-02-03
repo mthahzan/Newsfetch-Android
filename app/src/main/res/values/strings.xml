@@ -19,4 +19,5 @@
     <string name="consumer_main_grid_item_description">The title of the grid item</string>
     <string name="consumer_grid_item_type_logo">Main grid item type logo</string>
     <string name="title_activity_posts_list">PostsListActivity</string>
+    <string name="parallax_image_of_post_type">Parallax image of post type</string>
 </resources>
