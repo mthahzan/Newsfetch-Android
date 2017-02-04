@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,14 +21,26 @@ android {
     productFlavors {
         production {
             applicationId "me.mthahzan.anonlk.newsfetch"
+            buildConfigField "String", "API_BASE", "\"http://54.202.122.38/newsfetch/api\""
         }
 
         staging {
             applicationId "me.mthahzan.anonlk.newsfetch.staging"
+            buildConfigField "String", "API_BASE", "\"http://54.202.122.38/newsfetch/api\""
         }
 
         dev {
             applicationId "me.mthahzan.anonlk.newsfetch.dev"
+            buildConfigField "String", "API_BASE", "\"http://10.0.2.2:3000\""
+        }
+    }
+    splits {
+        // Split apks on build target ABI, view all options for the splits here:
+        // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+        abi {
+            enable true
+            reset()
+            include 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'mips', 'x86', 'x86_64'
         }
     }
 }

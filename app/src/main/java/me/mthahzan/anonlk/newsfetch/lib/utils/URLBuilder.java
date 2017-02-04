@@ -13,7 +13,7 @@ public class URLBuilder {
      * @return The URL for authentication
      */
     public static String authEndpoint() {
-        return new Constants().getConstants().getApiBaseUrl() + "/auth/";
+        return Constants.API_BASE_URL + "/auth/";
     }
 
     /**
@@ -21,7 +21,7 @@ public class URLBuilder {
      * @return The URL for token refresh endpoint
      */
     public static String refreshTokenEndpoint() {
-        return new Constants().getConstants().getApiBaseUrl() + "/auth/token";
+        return Constants.API_BASE_URL + "/auth/token";
     }
 
     /**
@@ -42,8 +42,7 @@ public class URLBuilder {
         urlSegmentMap.put(segmentName, String.valueOf(modelId));
 
         // Create the raw URL with url segments
-        String url = new Constants().getConstants().getApiBaseUrl() +
-                "/" + pluralizedModelName + "/:" + segmentName;
+        String url = Constants.API_BASE_URL + "/" + pluralizedModelName + "/:" + segmentName;
 
         return getMappedURL(url, urlSegmentMap);
     }
@@ -57,7 +56,7 @@ public class URLBuilder {
         // Add an "s" to the end to pluralize the model name for API access
         String pluralizedModelName = modelName + "s";
 
-        return new Constants().getConstants().getApiBaseUrl() + "/" + pluralizedModelName;
+        return Constants.API_BASE_URL + "/" + pluralizedModelName;
     }
 
     /**
